@@ -22,12 +22,13 @@ ownerOf(tokenId) = _owners[tokenId];
 ### Limitations
 
 - Total supply should be limited based on the `ERC721Inventory.BALANCE_BITSIZE` setting. For example, if it's set to `16`, then supply should be limited to `type(uint16).max`.
-- The maximum number of tokens a single address can mint is limited based on `ERC721Inventory.SLOTS_PER_INVENTORY`. It's set to `232` by default, but may change when updating other settings. You can enforce a lower limit by overriding `ERC721._maxMintBalance()`.
+The `ERC721Supply` extension is provided to enforce this limitation, and its `_maxSupply` method can be overridden to enforce a lower one.
+- The maximum number of tokens a single address can mint is limited based on `ERC721Inventory.SLOTS_PER_INVENTORY`. It's set to `232` by default, but may change when updating other settings. You can enforce a lower limit by overriding `ERC721._maxMintBalance`.
 - Enumerability isn't trivial.
 
 ### Enumerability
 
-This repo also includes an `ERC721Enumerable` implementation that can be used to provide on-chain enumerability. While most interactions remain unaffected, gas usage is a little higher for mint, and very close to that of ERC721A. See [benchmarks](./benchmarks.md) for more details.
+This repo includes an `ERC721Enumerable` implementation that can be used to provide on-chain enumerability. While most interactions remain unaffected, gas usage on mint is a little higher than ERC721A's. See [benchmarks](./benchmarks.md) for more details.
 
 ## Benchmarks
 

@@ -2,8 +2,9 @@
 
 pragma solidity ^0.8.0;
 
-import { ERC721, IERC165 } from "../ERC721.sol";
+import { ERC721Supply, ERC721 } from "./ERC721Supply.sol";
 import { IERC721Enumerable } from "@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol";
+import { IERC165 } from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import { ERC721Inventory } from "../utils/ERC721Inventory.sol";
 import { ERC721TokenId } from "../utils/ERC721TokenId.sol";
 
@@ -12,16 +13,13 @@ import { ERC721TokenId } from "../utils/ERC721TokenId.sol";
  * including the Enumerable extension.
  * @author https://github.com/nftyte
  */
-contract ERC721Enumerable is ERC721, IERC721Enumerable {
+contract ERC721Enumerable is ERC721Supply, IERC721Enumerable {
     using ERC721Inventory for uint256;
     using ERC721TokenId for uint256;
     using ERC721TokenId for address;
-
-    // Global enumeration index, set to 1 to save gas during mint
-    uint256 private _supply = 1;
     
     // Burned supply counter, set to 1 to save gas during burn
-    uint256 private _burnedSupply = 1;
+    uint256 private _burned = 1;
 
     // Array with all minter addresses, used for enumeration
     mapping(uint256 => address) private _minters;
@@ -38,7 +36,7 @@ contract ERC721Enumerable is ERC721, IERC721Enumerable {
      */
     function totalSupply() public view virtual returns (uint256) {
         unchecked {
-            return _supply - _burnedSupply;
+            return _mintedSupply() - _burnedSupply();
         }
     }
 
@@ -48,7 +46,7 @@ contract ERC721Enumerable is ERC721, IERC721Enumerable {
     function tokenOfOwnerByIndex(address owner, uint256 index) public view virtual returns (uint256 tokenId) {
         unchecked {
             require(index++ < balanceOf(owner), "ERC721Enumerable: owner index out of bounds");
-            uint256 supply = _supply - 1;
+            uint256 supply = _mintedSupply();
 
             for (uint i; i < supply; i++) {
                 address minter = _minters[i];
@@ -75,7 +73,7 @@ contract ERC721Enumerable is ERC721, IERC721Enumerable {
     function tokenByIndex(uint256 index) public view virtual returns (uint256 tokenId) {
         unchecked {
             require(index++ < totalSupply(), "ERC721Enumerable: global index out of bounds");
-            uint256 supply = _supply - 1;
+            uint256 supply = _mintedSupply();
 
             for (uint i; i < supply; i++) {
                 address minter = _minters[i];
@@ -105,14 +103,22 @@ contract ERC721Enumerable is ERC721, IERC721Enumerable {
         override
         returns (uint256 tokenId, uint256 maxTokenId)
     {
+        uint256 mintedSupply = _mintedSupply();
         (tokenId, maxTokenId) = super._mintTokens(to, amount);
 
         unchecked {
             if (tokenId.index() == 0) {
-                _minters[_supply - 1] = to;
+                _minters[mintedSupply] = to;
             }
+        }
+    }
 
-            _supply += amount;
+    /**
+     * @dev Returns the number of burned tokens.
+     */
+    function _burnedSupply() internal view virtual returns (uint256) {
+        unchecked {
+            return _burned - 1;
         }
     }
 
@@ -123,7 +129,7 @@ contract ERC721Enumerable is ERC721, IERC721Enumerable {
         super._burn(tokenId);
 
         unchecked {
-            _burnedSupply++;
+            _burned++;
         }
     }
 }

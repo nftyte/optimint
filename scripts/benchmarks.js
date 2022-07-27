@@ -21,7 +21,7 @@ const TransferType = {
         },
     },
     mintAmounts = [1, 2, 3, 4, 5, 10, 50, 100],
-    contracts = ["Optimint", "OptimintEnumerable", "ERC721AMock"],
+    contracts = ["Optimint", "OptimintSupply", "OptimintEnumerable", "ERC721AMock"],
     results = Object.fromEntries(
         contracts.map((c) => [
             c,
