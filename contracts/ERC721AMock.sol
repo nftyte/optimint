@@ -6,6 +6,7 @@ import { ERC721A } from "erc721a/contracts/ERC721A.sol";
 
 /**
  * @dev Mock ERC721A implementation used in benchmarks.
+ * @author https://github.com/nftyte
  */
 contract ERC721AMock is ERC721A("ERC721A", "ERC721A") {
     function mint(uint256 amount) public payable virtual {

@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 
 /**
  * @title ERC721 token id utilities
+ * @author https://github.com/nftyte
  */
 library ERC721TokenId {
     uint256 constant MINTER_OFFSET = 8;

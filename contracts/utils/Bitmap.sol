@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 
 /**
  * @title Bitmap utilities
+ * @author https://github.com/nftyte
  */
 library Bitmap {
     function get(uint256 bitmap, uint256 index) internal pure returns (uint256) {

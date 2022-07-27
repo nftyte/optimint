@@ -7,6 +7,7 @@ import { ERC721Enumerable, ERC721 } from "./token/ERC721/extensions/ERC721Enumer
 
 /**
  * @dev Gas optimized ERC721 implementation, including optional extensions.
+ * @author https://github.com/nftyte
  */
 contract OptimintEnumerable is Optimint, ERC721Enumerable {
     /**

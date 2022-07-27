@@ -11,6 +11,7 @@ import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
  * including the Metadata extension.
  * Note: Based on OpenZeppelin Contracts, see:
  * https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol
+ * @author https://github.com/nftyte
  */
 contract ERC721Metadata is ERC721, IERC721Metadata {
     using Strings for uint256;

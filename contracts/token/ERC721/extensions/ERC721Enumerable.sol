@@ -10,6 +10,7 @@ import { ERC721TokenId } from "../utils/ERC721TokenId.sol";
 /**
  * @dev Implementation of https://eips.ethereum.org/EIPS/eip-721[ERC721] Non-Fungible Token Standard,
  * including the Enumerable extension.
+ * @author https://github.com/nftyte
  */
 contract ERC721Enumerable is ERC721, IERC721Enumerable {
     using ERC721Inventory for uint256;

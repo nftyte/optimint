@@ -16,6 +16,7 @@ import { ERC721Receiver } from "./utils/ERC721Receiver.sol";
  * excluding optional extensions.
  * Note: Modified from OpenZeppelin Contracts, see:
  * https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol
+ * @author https://github.com/nftyte
  */
 contract ERC721 is Context, ERC165, IERC721 {
     using ERC721Inventory for uint256;

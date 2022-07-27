@@ -6,6 +6,7 @@ import { Bitmap } from "../../../utils/Bitmap.sol";
 
 /**
  * @title ERC721 token inventory utilities
+ * @author https://github.com/nftyte
  */
 library ERC721Inventory {
     using Bitmap for uint256;

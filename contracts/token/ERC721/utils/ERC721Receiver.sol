@@ -6,6 +6,7 @@ import { IERC721Receiver } from "@openzeppelin/contracts/token/ERC721/IERC721Rec
 
 /**
  * @title ERC721 token receiver utilities
+ * @author https://github.com/nftyte
  */
 library ERC721Receiver {
     function checkOnERC721Received(
