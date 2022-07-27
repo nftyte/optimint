@@ -74,7 +74,9 @@ async function benchmarks() {
         res += `### ${label}\n\n${transferResults(results, k)}\n\n`;
     }
 
+    console.log("Completed benchmarks, writing to file...\n");
     fs.writeFileSync(join(process.cwd(), "benchmarks.md"), res);
+    console.log(res);
 }
 
 function deployResults(results) {
