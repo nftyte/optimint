@@ -2,7 +2,7 @@
 
 Optimint is a gas-optimized ERC721 reference implementation that's based on OpenZeppelin Contracts, and requires only 1 SSTORE operation per batch-mint. Please see the [benchmarks](./benchmarks.md) file to compare gas-usage.
 
-**Note:** We use OpenZeppelin Contracts as a base, but these optimizations can be utilized in other implemenations too.
+**Note:** We use OpenZeppelin Contracts as a base, but these optimizations can be utilized in other implemenations.
 
 ## Optimized Gas
 
@@ -37,7 +37,7 @@ You can run the benchmarks locally:
 npx hardhat run scripts/benchmarks.js
 ```
 
-**Note:** Benchmarks may take a minute to finish.
+**Note:** Benchmarks may take a minute to complete.
 
 ## Contributations
 
