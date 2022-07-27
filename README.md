@@ -13,7 +13,7 @@ uint tokenId = (uint(owner) << x) | N;
 ownerOf(tokenId) = address(tokenId >> x);
 ```
 
-We commit a token owner's address to storage only after the token's been transferred the first time:
+We commit a token owner's address to storage only after the token's been transferred for the first time:
 
 ```Solidity
 ownerOf(tokenId) = _owners[tokenId];
